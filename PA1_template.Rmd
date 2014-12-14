@@ -44,7 +44,11 @@ summByDay(activity)
 ```{r}
 avgStepsByInt <- aggregate(steps ~ fracHour, data=activity, FUN=mean,
                            na.action = na.omit)
-## Time series of average steps by interval
+```
+
+
+#### Time series of average steps by interval
+```{r}
 with(avgStepsByInt, plot(fracHour,steps,type="l",xlab="Hour",
                          ylab="Average Steps",
                          main="Average Steps By Hour"), )
@@ -59,6 +63,7 @@ c(Interval=maxint, Fractional_Hour=maxhour)
 
 
 ## Imputing missing values
+####Impute missing values with means by interval over nonmissing data.
 ```{r}
 naInd <- is.na(activity$steps)  # Where are missing values?
 actimput <- activity            # New data frame for imputed steps

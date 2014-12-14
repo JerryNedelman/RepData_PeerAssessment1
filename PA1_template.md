@@ -66,13 +66,18 @@ summByDay(activity)
 ```r
 avgStepsByInt <- aggregate(steps ~ fracHour, data=activity, FUN=mean,
                            na.action = na.omit)
-## Time series of average steps by interval
+```
+
+
+#### Time series of average steps by interval
+
+```r
 with(avgStepsByInt, plot(fracHour,steps,type="l",xlab="Hour",
                          ylab="Average Steps",
                          main="Average Steps By Hour"), )
 ```
 
-![plot of chunk unnamed-chunk-4](PA1_template_files/figure-html/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-5](PA1_template_files/figure-html/unnamed-chunk-5.png) 
 
 #### Interval and fractional hour with maximum average number of steps
 
@@ -89,6 +94,7 @@ c(Interval=maxint, Fractional_Hour=maxhour)
 
 
 ## Imputing missing values
+####Impute missing values with means by interval over nonmissing data.
 
 ```r
 naInd <- is.na(activity$steps)  # Where are missing values?
@@ -104,7 +110,7 @@ actimput$steps[naInd] <-        # Impute missing values with interval means
 summByDay(actimput)
 ```
 
-![plot of chunk unnamed-chunk-7](PA1_template_files/figure-html/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-8](PA1_template_files/figure-html/unnamed-chunk-8.png) 
 
 ```
 ##   mean median 
@@ -137,4 +143,4 @@ xyplot(steps ~ fracHour | typeOfDay, data=avgStepsByInt2, type='l',
        layout=c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-8](PA1_template_files/figure-html/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-9](PA1_template_files/figure-html/unnamed-chunk-9.png) 
